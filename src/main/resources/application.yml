@@ -1,0 +1,11 @@
+spring:
+  application:
+    name: spring-jwt
+  data:
+    redis:
+      host: localhost
+      port: 6379
+jwt:
+  secretKey: "U2VjcmV0S2V5Rm9ySnNvbldlYlRva2VuU2lnbmluZ0tleQo="
+  accessTokenExpirationMinutes: 60
+  refreshTokenExpirationDays: 7

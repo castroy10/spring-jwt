@@ -1,0 +1,29 @@
+services:
+
+  spring-jwt:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: spring-jwt
+    restart: unless-stopped
+    ports:
+      - "8080:8080"
+      - "1097:1097"
+    environment:
+      - SPRING_DATA_REDIS_HOST=redis
+      - SPRING_DATA_REDIS_PORT=6379
+    depends_on:
+      - redis
+
+  redis:
+    image: redis:8.4.0-alpine
+    container_name: redis
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    command: redis-server --appendonly yes --replica-read-only no
+
+volumes:
+  redis_data:
